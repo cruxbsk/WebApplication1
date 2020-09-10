@@ -5,48 +5,22 @@
 
 trigger:
 - master
-
 pool:
   vmImage: 'Windows-latest'
-
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
 - task: DotNetCoreCLI@2
-  displayName: Build
   inputs:
-    command: build
+    command: restore
     projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)' 
-
+    vstsFeed: 'bebd0b58-3188-4e3f-ad2f-2bb688755732'
 - task: DotNetCoreCLI@2
   inputs:
     command: publish
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
-
+    zipAfterPublish: false
 # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
   inputs:
@@ -59,7 +33,6 @@ steps:
     azureSubscription: 'Development Integration MSDN (308583db-5571-446d-b880-646fcb826528)'
     WebAppName: 'MoviesPage-test-lb'
     packageForLinux: '$(Build.ArtifactStagingDirectory)'
-    enableCustomDeployment: true
 
 
 
