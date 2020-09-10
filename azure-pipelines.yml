@@ -56,8 +56,8 @@ steps:
 - Deploy:
     - task: AzureWebApp@1
   inputs:
-    azureSubscription: '<Azure service connection>'
-    appName: '<Name of web app>'
+    azureSubscription: 'Development Integration MSDN (308583db-5571-446d-b880-646fcb826528)'
+    appName: 'MoviesPage-test-lb'
     package: $(System.DefaultWorkingDirectory)/**/*.zip  
 
 
