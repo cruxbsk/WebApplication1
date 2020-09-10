@@ -19,7 +19,7 @@ steps:
   inputs:
     command: publish
     publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/published'
     zipAfterPublish: false
 # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishBuildArtifacts@1
@@ -32,7 +32,7 @@ steps:
   inputs:
     azureSubscription: 'Development Integration MSDN (308583db-5571-446d-b880-646fcb826528)'
     WebAppName: 'MoviesPage-test-lb'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/published'
 
 
 
