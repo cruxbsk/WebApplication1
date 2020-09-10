@@ -33,7 +33,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-  steps:
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
