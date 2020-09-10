@@ -53,5 +53,12 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'myWebsiteName'
 
+- Deploy:
+    - task: AzureWebApp@1
+  inputs:
+    azureSubscription: '<Azure service connection>'
+    appName: '<Name of web app>'
+    package: $(System.DefaultWorkingDirectory)/**/*.zip  
+
 
 
