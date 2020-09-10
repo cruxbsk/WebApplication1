@@ -52,15 +52,12 @@ steps:
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'moviespage-test-lb'
-
+  
 - task: AzureWebApp@1
-  displayName: 'Deploy to Azure App Service'
   inputs:
     azureSubscription: 'Development Integration MSDN (308583db-5571-446d-b880-646fcb826528)'
     appName: 'MoviesPage-test-lb'
-    package: $(Build.ArtifactStagingDirectory)/**/*.zip
-    enableCustomDeployment: true
-    deploymentMethod: runFromPackage
+    package: $(System.DefaultWorkingDirectory)/**/*.zip  
 
 
 
