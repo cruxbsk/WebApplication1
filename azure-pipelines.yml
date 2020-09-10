@@ -57,7 +57,7 @@ steps:
   inputs:
     azureSubscription: 'Development Integration MSDN (308583db-5571-446d-b880-646fcb826528)'
     appName: 'MoviesPage-test-lb'
-    package: $(System.DefaultWorkingDirectory)/**/*.zip  
+    package: $(System.DefaultWorkingDirectory)
 
 
 
