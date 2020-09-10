@@ -54,10 +54,12 @@ steps:
     artifactName: 'moviespage-test-lb'
   
 - task: AzureRmWebAppDeployment@4
+  displayName: 'Azure App Service Deploy: MoviesPage-test-lb'
   inputs:
     azureSubscription: 'Development Integration MSDN (308583db-5571-446d-b880-646fcb826528)'
     WebAppName: 'MoviesPage-test-lb'
-    packageForLinux: $(Build.ArtifactStagingDirectory)
+    packageForLinux: '$(Build.ArtifactStagingDirectory)'
+    enableCustomDeployment: true
 
 
 
