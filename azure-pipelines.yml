@@ -53,7 +53,7 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'moviespage-test-lb'
 
-    - task: AzureWebApp@1
+- task: AzureWebApp@1
   displayName: 'Deploy to Azure App Service'
   inputs:
     azureSubscription: 'Development Integration MSDN (308583db-5571-446d-b880-646fcb826528)'
